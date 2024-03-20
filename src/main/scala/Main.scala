@@ -25,11 +25,15 @@ def splitLine(lines: List[String], rowIndex: Int): List[Int] = {
       stopFlag = checkNeighborhood(lines, rowIndex, i)
     }
   } else {
-    if (stopFlag) {
+    if (currentNumber.nonEmpty && stopFlag) {
       requiredNumbers = requiredNumbers :+ currentNumber.toInt
     }
     currentNumber = ""
     stopFlag = false
+  }
+
+  if (currentNumber.nonEmpty && stopFlag) {
+    requiredNumbers = requiredNumbers :+ currentNumber.toInt
   }
 
   requiredNumbers
